@@ -59,8 +59,7 @@ class Graph {
     // retrun true if id1 is connected by edge to id2 (id1 and id2 are id number of nodes in the graph)
     hasEdge(id1, id2) {
         if(!this.hasNode(id1) || !this.hasNode(id2)) return false;
-        else if(this.childes[id1] == id2) return true;
-        else return false;
+        else return contains(this.childes[id1], id2);
     }
 
     // connect between two nodes in the graph (id1 and id2 are id number of nodes in the graph)
@@ -72,7 +71,6 @@ class Graph {
             this.addMc();
             return true;
         }
-
     }
 
     // remove connection between two nodes in the graph (id1 and id2 are id number of nodes in the graph)

@@ -12,6 +12,7 @@
 
     <!-- javascript -->
     <script src="js/settings.js"></script>
+    <script src="js/external.js"></script>
     <script src="js/graphCreator.js"></script>
     <script src="js/node.js"></script>
     <script src="js/graph.js"></script>
@@ -33,12 +34,10 @@
         g0.addNode(0, null, 1, "first");
         g0.addNode(1, null, 1, "second");
         g0.addNode(2, null, 1, "third");
-        console.log(g0.removeNode(1));
-        console.log(g0.removeNode(1));
         console.log(g0.addEdge(0,2));
+        console.log(g0.addEdge(0,1));
         console.log(g0.addEdge(2,0));
-        console.log(g0.removeEdge(0,2));
-        console.log(g0.removeEdge(2,0));
+        //console.log(g0.removeEdge(0,2));
         g0.print();
 
     </script>
