@@ -1,0 +1,22 @@
+/* Global Variables */
+:root {
+
+    --mainfont: Segoe UI;
+    --shadow: 2px 2px 2px black;
+
+    --black: #333;
+    --blackgrey: #505050;
+    --grey: #d6d6d6;
+
+    --blue: #2d5277;
+    --lightblue: #1b3046;
+    --red: #db2b2b;
+}
+
+* {
+    transition: 200ms;
+    -o-transition: 200ms;
+    -ms-transition: 200ms;
+    -moz-transition: 200ms;
+    -webkit-transition: 200ms;
+}
