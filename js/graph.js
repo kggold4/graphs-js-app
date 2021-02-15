@@ -67,7 +67,7 @@ class Graph {
     addEdge(id1, id2) {
         if(this.hasEdge(id1, id2)) return false;
         else {
-            this.childes[id1] = id2;
+            this.childes[id1].push(id2);
             this.ec++;
             this.addMc();
             return true;
@@ -79,7 +79,8 @@ class Graph {
     removeEdge(id1, id2) {
         if(isNaN(id1) || isNaN(id2) || !this.hasNode(id1) || !this.hasNode(id2) || this.childes[id1] != id2) return false;
         else {
-            
+            var index = this.childes[id1].indexOf(id2);
+            this.childes[id1].splice(index, 1);
             this.ec--;
             this.addMc();
             return true;
