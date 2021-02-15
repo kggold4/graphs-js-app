@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- meta settings -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- title -->
+    <title> Graphs </title>
+
+    <!-- javascript -->
+    <script src="js/settings.js"></script>
+    <script src="js/graphCreator.js"></script>
+    <script src="js/node.js"></script>
+    <script src="js/graph.js"></script>
+    <script src="js/graphAlgo.js"></script>
+
+    <!-- css -->
+</head>
+<body>
+
+    <div id="output">
+
+    </div>
+
+    <script>
+
+        let g0 = new Graph();
+        g0.addNode(0, null, 1, "first");
+        g0.addNode(1, null, 1, "second");
+        g0.addNode(2, null, 1, "third");
+        console.log(g0.removeNode(1));
+        console.log(g0.removeNode(1));
+        console.log(g0.connect(0,2));
+        console.log(g0.connect(2,0));
+        console.log(g0.removeEdge(0,2));
+        console.log(g0.removeEdge(2,0));
+        g0.print();
+
+    </script>
+    
+</body>
+</html>
