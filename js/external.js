@@ -15,3 +15,10 @@ function getIndex(arr, item) {
     for(var i = 0; i < arr.length; i++) if(arr[i] == item) return i;
     return -1;
 }
+
+Object.size = function(obj) {
+    var size = 0,
+        key;
+    for(key in obj) if (obj.hasOwnProperty(key)) size++;
+    return size;
+};

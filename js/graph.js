@@ -60,27 +60,24 @@ class Graph {
             // found the node
             if(this.nodes[i].id == id) {
 
-                // search for the node in chileds
-                for(var j = 0; j < this.childes.length; j++) {
-
-                    // found the node as a parent
-                    if(this.childes[j] == id) this.childes[j] = [];
-
-                    // found the node as a child
-                    else {
-                        for(var k = 0; k < this.childes[j].length; k++) {
-                            if(this.childes[j][k] == id) this.childes[j].splice(k, 1);
-                        }
-                    }
-                }
-
-                // remove node
+                // remove node from nodes
                 this.nodes.splice(i, 1);
-                this.addMc();
-                return true;
             }
         }
-        return false;
+
+        delete this.childes[id];
+
+        for(var child in this.childes) {
+            for(var i = 0; i < this.childes[child].length; i++) {
+                if(this.childes[child][i] == id) {
+                    this.childes[child].splice(i, 1);
+                }
+            }
+        }
+
+        this.addMc();
+        return true;
+    
     }
 
     // retrun true if id1 is connected by edge to id2 (id1 and id2 are id number of nodes in the graph)
@@ -136,6 +133,6 @@ class Graph {
     print() {
         console.log(this.nodes);
         console.log(this.childes);
-        console.log("mc is:", this.mc)
+        console.log("mc is:", this.mc);
     }
 }
