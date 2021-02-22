@@ -31,7 +31,7 @@ class Graph {
     // using linear search O(n), n = |V|
     hasNode(id) {
         if(isNaN(id) || id < 0 || this.nodeSize <= 0) return false;
-        return contains(this.nodes, id);
+        return containsNode(this.nodes, id);
     }
 
     // adding a node by id number
@@ -102,9 +102,9 @@ class Graph {
 
     // remove connection between two nodes in the graph (id1 and id2 are id number of nodes in the graph)
     removeEdge(id1, id2) {
-        if(!this.hasNode(id1) || !this.hasNode(id2) || !this.hasEdge(id1, id2)) return false;
+        if(!this.hasNode(id1) || !this.hasNode(id2) || !this.hasEdge(id1, id2) || id1 == id2) return false;
         else {
-            var index = this.childes[id1].indexOf(id2);
+            var index = getIndex(this.childes[id1], id2);
             this.childes[id1].splice(index, 1);
             this.ec--;
             this.addMc();
@@ -136,5 +136,6 @@ class Graph {
     print() {
         console.log(this.nodes);
         console.log(this.childes);
+        console.log("mc is:", this.mc)
     }
 }

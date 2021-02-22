@@ -31,13 +31,17 @@
     <script>
 
         let g0 = new Graph();
-        g0.addNode(0, null, 1, "first");
-        g0.addNode(1, null, 1, "second");
-        g0.addNode(2, null, 1, "third");
-        console.log(g0.addEdge(0,2));
-        console.log(g0.addEdge(0,1));
-        console.log(g0.addEdge(2,0));
-        console.log(g0.removeEdge(0,2));
+        g0.addNode(0, null, 0, "first");
+        g0.addNode(1, null, 0, "second");
+        g0.addNode(2, null, 0, "third");
+
+        console.log(g0.hasNode(0));
+        console.log(g0.hasNode(1));
+        console.log(g0.hasNode(2));
+
+        g0.addEdge(0,1);
+        g0.removeNode(1);
+
         g0.print();
 
     </script>
