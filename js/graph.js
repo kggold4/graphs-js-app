@@ -18,6 +18,7 @@ class Graph {
     }
 
     // getting node object by id number
+    // using linear search O(n), n = |V|
     getNode(id) {
         if(!this.hasNode(id)) return null;
         for(var i = 0; i < this.nodes.length; i++) {
@@ -27,16 +28,22 @@ class Graph {
     }
 
     // return true the graph is contains a node with the id number
+    // using linear search O(n), n = |V|
     hasNode(id) {
-        if(isNaN(id) || id < 0) return false;
-        for(var i = 0; i < this.nodes.length; i++) if(this.nodes[i].id == id) return true;
-        return false;
+        if(isNaN(id) || id < 0 || this.nodeSize <= 0) return false;
+        return contains(this.nodes, id);
     }
 
     // adding a node by id number
     addNode(id, position, tag, info) {
+
+        // if node is already exist
         if(this.hasNode(id)) return false;
+
+        // create new node
         var node = new Node(id, position, tag, info);
+
+        // push to nodes and childes
         this.nodes.push(node);
         this.childes[id] = []
         this.addMc();
@@ -44,11 +51,31 @@ class Graph {
     }
 
     // remove a node by id number
+    // O(n + e^2), n = |V|, e = |E|
     removeNode(id) {
+
+        // linear search for the node by id
         for(var i = 0; i < this.nodes.length; i++) {
+
+            // found the node
             if(this.nodes[i].id == id) {
+
+                // search for the node in chileds
+                for(var j = 0; j < this.childes.length; j++) {
+
+                    // found the node as a parent
+                    if(this.childes[j] == id) this.childes[j] = [];
+
+                    // found the node as a child
+                    else {
+                        for(var k = 0; k < this.childes[j].length; k++) {
+                            if(this.childes[j][k] == id) this.childes[j].splice(k, 1);
+                        }
+                    }
+                }
+
+                // remove node
                 this.nodes.splice(i, 1);
-                delete this.childes[id];
                 this.addMc();
                 return true;
             }
@@ -64,7 +91,7 @@ class Graph {
 
     // connect between two nodes in the graph (id1 and id2 are id number of nodes in the graph)
     addEdge(id1, id2) {
-        if(this.hasEdge(id1, id2)) return false;
+        if(this.hasEdge(id1, id2) || id1 == id2) return false;
         else {
             this.childes[id1].push(id2);
             this.ec++;
@@ -75,7 +102,7 @@ class Graph {
 
     // remove connection between two nodes in the graph (id1 and id2 are id number of nodes in the graph)
     removeEdge(id1, id2) {
-        if(isNaN(id1) || isNaN(id2) || !this.hasNode(id1) || !this.hasNode(id2) || this.childes[id1] != id2) return false;
+        if(!this.hasNode(id1) || !this.hasNode(id2) || !this.hasEdge(id1, id2)) return false;
         else {
             var index = this.childes[id1].indexOf(id2);
             this.childes[id1].splice(index, 1);
