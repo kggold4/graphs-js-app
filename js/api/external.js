@@ -1,9 +1,10 @@
-// linear search on given array O(n)
+// linear search on given array and an item O(n)
 function contains(arr, item) {
     for(var i = 0; i < arr.length; i++) if(arr[i] == item) return true;
     return false;
 }
 
+// linear search on given array and an id of node O(n)
 function containsNode(arr, id) {
     for(var i = 0; i < arr.length; i++) if(arr[i].getId() == id) return true;
     return false;

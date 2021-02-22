@@ -54,6 +54,21 @@ class Graph {
     // O(n + e^2), n = |V|, e = |E|
     removeNode(id) {
 
+        if(this.nodeSize <= 0 || !this.hasNode(id)) return false;
+
+        for(var child in this.childes) {
+            for(var i = 0; i < this.childes[child].length; i++) {
+                if(child == id) {
+                    for(var k = 0; k < this.childes[child].length; k++) {
+                        this.removeEdge(parseInt(child), this.childes[child][k]);
+                    }
+                }
+                if(this.childes[child][i] == id) {
+                    this.removeEdge(parseInt(child), this.childes[child][i]);
+                }
+            }
+        }
+
         // linear search for the node by id
         for(var i = 0; i < this.nodes.length; i++) {
 
@@ -66,15 +81,6 @@ class Graph {
         }
 
         delete this.childes[id];
-
-        for(var child in this.childes) {
-            for(var i = 0; i < this.childes[child].length; i++) {
-                if(this.childes[child][i] == id) {
-                    this.childes[child].splice(i, 1);
-                }
-            }
-        }
-
         this.addMc();
         return true;
     
@@ -99,8 +105,11 @@ class Graph {
 
     // remove connection between two nodes in the graph (id1 and id2 are id number of nodes in the graph)
     removeEdge(id1, id2) {
+        //console.log("0 - remove edge between", id1, "and", id2);
+        //console.log("has id1:", this.hasNode(id1));
         if(!this.hasNode(id1) || !this.hasNode(id2) || !this.hasEdge(id1, id2) || id1 == id2) return false;
         else {
+            //console.log("1 - remove edge between", id1, "and", id2);
             var index = getIndex(this.childes[id1], id2);
             this.childes[id1].splice(index, 1);
             this.ec--;
@@ -134,5 +143,7 @@ class Graph {
         console.log(this.nodes);
         console.log(this.childes);
         console.log("mc is:", this.mc);
+        console.log("|V| is:", this.nodeSize());
+        console.log("|E| is:", this.edgeSize());
     }
 }
