@@ -1,3 +1,4 @@
+// this class represents a node (vertex) data structure in a directed weighted graph
 class Node {
     
     // constructor
@@ -20,43 +21,26 @@ class Node {
     }
 
     // set node id
-    setId(id) {
-        this.id = id;
-    }
+    setId(id) { this.id = id; }
 
     // get node id
-    getId() {
-        return this.id;
-    }
+    getId() { return this.id; }
 
     // set node position
-    setPosition(position) {
-        this.position = position;
-    }
+    setPosition(position) { this.position = position; }
 
     // get node position
-    getPosition() {
-        return this.position;
-    }
+    getPosition() { return this.position; }
 
     // set node tag
-    setTag(tag) {
-        this.tag = tag;
-    }
+    setTag(tag) { this.tag = tag; }
 
     // get node tag
-    getTag() {
-        return this.tag;
-    }
+    getTag() { return this.tag; }
 
     // set node info
-    setInfo(info) {
-        this.info = info;
-    }
+    setInfo(info) { this.info = info; }
 
     // get node info
-    getInfo() {
-        return this.info;
-    }
-    
+    getInfo() { return this.info; }
 }

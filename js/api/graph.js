@@ -1,4 +1,4 @@
-// graph data structure
+// this class represents a directed weighted graph data structure
 class Graph {
 
     // graph constructor
@@ -108,11 +108,8 @@ class Graph {
 
     // remove connection between two nodes in the graph (id1 and id2 are id number of nodes in the graph)
     removeEdge(id1, id2) {
-        console.log("0 - remove edge between", id1, "and", id2);
-        //console.log("has id1:", this.hasNode(id1));
         if(!this.hasNode(id1) || !this.hasNode(id2) || !this.hasEdge(id1, id2) || id1 == id2) return false;
         else {
-            console.log("1 - remove edge between", id1, "and", id2);
             var index = getIndex(this.childes[id1], id2);
             this.childes[id1].splice(index, 1);
             this.ec--;
@@ -122,24 +119,16 @@ class Graph {
     }
 
     // return number of nodes in the graph
-    nodeSize() {
-        return this.nodes.length;
-    }
+    nodeSize() { return this.nodes.length; }
 
     // return number of edges in the graph
-    edgeSize() {
-        return this.ec;
-    }
+    edgeSize() { return this.ec; }
 
     // retrun the mode count of the graph
-    getMc() {
-        return this.mc;
-    }
+    getMc() { return this.mc; }
 
     // add 1 to the mode count
-    addMc() {
-        this.mc++;
-    }
+    addMc() { this.mc++; }
 
     // console graph
     print() {
