@@ -54,15 +54,17 @@ class Graph {
     // O(n + e^2), n = |V|, e = |E|
     removeNode(id) {
 
+        // if node is not in the graph
         if(this.nodeSize <= 0 || !this.hasNode(id)) return false;
 
+        // remove edges between node id to his childes
+        for(var k = this.childes[id].length - 1; k >= 0; k--) {
+            this.removeEdge(parseInt(id), this.childes[id][k]);
+        }
+        
+        // remove node id as a child
         for(var child in this.childes) {
             for(var i = 0; i < this.childes[child].length; i++) {
-                if(child == id) {
-                    for(var k = 0; k < this.childes[child].length; k++) {
-                        this.removeEdge(parseInt(child), this.childes[child][k]);
-                    }
-                }
                 if(this.childes[child][i] == id) {
                     this.removeEdge(parseInt(child), this.childes[child][i]);
                 }
@@ -80,6 +82,7 @@ class Graph {
             }
         }
 
+        // remove node id in childes
         delete this.childes[id];
         this.addMc();
         return true;
@@ -94,7 +97,7 @@ class Graph {
 
     // connect between two nodes in the graph (id1 and id2 are id number of nodes in the graph)
     addEdge(id1, id2) {
-        if(this.hasEdge(id1, id2) || id1 == id2) return false;
+        if(!this.hasNode(id1) || !this.hasNode(id2) || this.hasEdge(id1, id2) || id1 == id2) return false;
         else {
             this.childes[id1].push(id2);
             this.ec++;
@@ -105,11 +108,11 @@ class Graph {
 
     // remove connection between two nodes in the graph (id1 and id2 are id number of nodes in the graph)
     removeEdge(id1, id2) {
-        //console.log("0 - remove edge between", id1, "and", id2);
+        console.log("0 - remove edge between", id1, "and", id2);
         //console.log("has id1:", this.hasNode(id1));
         if(!this.hasNode(id1) || !this.hasNode(id2) || !this.hasEdge(id1, id2) || id1 == id2) return false;
         else {
-            //console.log("1 - remove edge between", id1, "and", id2);
+            console.log("1 - remove edge between", id1, "and", id2);
             var index = getIndex(this.childes[id1], id2);
             this.childes[id1].splice(index, 1);
             this.ec--;
@@ -140,8 +143,8 @@ class Graph {
 
     // console graph
     print() {
-        console.log(this.nodes);
-        console.log(this.childes);
+        console.log("graph nodes:", this.nodes);
+        console.log("graph childs:", this.childes);
         console.log("mc is:", this.mc);
         console.log("|V| is:", this.nodeSize());
         console.log("|E| is:", this.edgeSize());

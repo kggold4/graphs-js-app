@@ -17,9 +17,9 @@ function getIndex(arr, item) {
     return -1;
 }
 
+// for getting a size of an dict
 Object.size = function(obj) {
-    var size = 0,
-        key;
-    for(key in obj) if (obj.hasOwnProperty(key)) size++;
+    var size = 0;
+    for(var key in obj) if(obj.hasOwnProperty(key)) size++;
     return size;
 };

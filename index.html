@@ -11,42 +11,52 @@
     <title> Graphs </title>
 
     <!-- javascript -->
-    <script src="js/api/settings.js"></script>
+    <!-- api -->
     <script src="js/api/external.js"></script>
     <script src="js/api/graphCreator.js"></script>
     <script src="js/api/node.js"></script>
     <script src="js/api/graph.js"></script>
     <script src="js/api/graphAlgo.js"></script>
 
+    <!-- gui -->
+    <script src="js/gui/main.js"></script>
+
     <!-- css -->
     <link rel="stylesheet" href="css/main.css">
 
 </head>
-<body>
+<body onload="start();">
 
-    <div id="output">
-
-    </div>
+    <main class="main" id="main"></main>
 
     <script>
 
         let g0 = new Graph();
-        g0.addNode(0, null, 0, "first");
-        g0.addNode(1, null, 0, "second");
-        g0.addNode(2, null, 0, "third");
+        g0.addNode(0, null, 0, "1th");
+        g0.addNode(1, null, 0, "2th");
+        g0.addNode(2, null, 0, "3th");
+        g0.addNode(3, null, 0, "4th");
+        g0.addNode(4, null, 0, "5th");
+        g0.addNode(5, null, 0, "6th");
+        g0.addNode(6, null, 0, "7th");
+        g0.addNode(7, null, 0, "8th");
+        g0.addNode(8, null, 0, "9th");
 
         console.log(g0.hasNode(0));
         console.log(g0.hasNode(1));
         console.log(g0.hasNode(2));
 
         g0.addEdge(0,1);
-        g0.addEdge(2,1);
         g0.addEdge(0,2);
-        g0.addEdge(1,2);
-        g0.addEdge(1,0);
-        g0.addEdge(2,0);
+        g0.addEdge(0,3);
+        g0.addEdge(0,4);
+        g0.addEdge(0,5);
+        g0.addEdge(5,0);
+        g0.addEdge(6,0);
+        g0.addEdge(7,0);
+        g0.addEdge(8,0);
 
-        console.log(g0.removeNode(1));
+        console.log(g0.removeNode(0));
 
         g0.print();
 
