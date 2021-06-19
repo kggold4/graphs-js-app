@@ -2,22 +2,12 @@
 class Node {
     
     // constructor
-    constructor(id, position, tag, info) {
-
-        if(id == null) this.id = node_counter;
-        else this.id = id;
-
-        if(position == null) this.position = getPosition();
-        else this.position = position;
-
-        if(tag == null) this.tag = 0;
-        else this.tag = tag;
-
-        if(info == null) this.info = "";
-        else this.info = info;
-
+    constructor(id = node_counter, position = getPosition(), tag = 0, info = "") {
+        this.id = id;
+        this.position = position;
+        this.tag = tag;
+        this.info = info;
         node_counter++;
-        
     }
 
     // set node id
