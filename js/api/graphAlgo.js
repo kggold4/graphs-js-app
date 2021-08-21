@@ -35,6 +35,8 @@ class GraphAlgo {
         // set the first node as GREY
         colors[startNode.id] = Color.GREY;
 
+        console.log(colors);
+
         // BFS algorithm
         while(!q.empty()) {
             let u = q.dequeue();
@@ -52,6 +54,8 @@ class GraphAlgo {
             colors[u.id] = Color.BLACK;
         }
 
+        console.log(colors);
+
         // if all the nodes are visited (BLACK) return true, else: return false
         for(const [key, value] of Object.entries(colors)) {
             if(value != Color.BLACK) return false;
@@ -63,6 +67,19 @@ class GraphAlgo {
     shortestPath(id1, id2) {
         let empty = []
         if(this.graph.nodeSize() == 0 || !this.graph.hasNode(id1) || !this.graph.hasNode(id2)) return empty;
+
+        let inf = Number.MAX_VALUE;
+
+        let visited = {};
+        let dist = {};
+        let prev = {};
+
+        for(const node in this.graph.nodes) {
+            visited[this.graph.nodes[node].id] = false;
+            dist[this.graph.nodes[node].id] = inf;
+            prev[this.graph.nodes[node].id] = null;
+        }
+        
     }
 
     shortestPathDist(id1, id2) {
