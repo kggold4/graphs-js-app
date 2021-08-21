@@ -127,6 +127,9 @@ class Graph {
     // return number of edges in the graph
     edgeSize() { return this.ec; }
 
+    // return true if the graph is empty of nodes
+    empty() { return this.nodeSize() == 0; }
+
     // retrun the mode count of the graph
     getMc() { return this.mc; }
 

@@ -12,6 +12,7 @@
 
     <!-- javascript -->
     <!-- api -->
+    <script src="js/api/color.js"></script>
     <script src="js/api/external.js"></script>
     <script src="js/api/graph.js"></script>
     <script src="js/api/graphAlgo.js"></script>
@@ -57,9 +58,12 @@
         g0.addEdge(7,0);
         g0.addEdge(8,0);
 
-        // console.log(g0.removeNode(0));
+        console.log(g0.removeNode(0));
 
         g0.print();
+
+        ga0 = new GraphAlgo(g0);
+        console.log(ga0.isConnected());
 
     </script>
     
