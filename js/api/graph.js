@@ -118,6 +118,8 @@ class Graph {
         }
     }
 
+    getChilds(id) { return this.childes[id]; }
+
     // return number of nodes in the graph
     nodeSize() { return this.nodes.length; }
 

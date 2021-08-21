@@ -1,5 +1,5 @@
 class GraphAlgo {
-    constructor(graph) {
+    constructor(graph = null) {
         this.init(graph);
     }
 
@@ -16,13 +16,14 @@ class GraphAlgo {
     }
 
     isConnected() {
+        this.color = []
+        
         
     }
 
     shortestPath(id1, id2) {
         let empty = []
         if(this.graph.nodeSize() == 0 || !this.graph.hasNode(id1) || !this.graph.hasNode(id2)) return empty;
-        
     }
 
     shortestPathDist(id1, id2) {
