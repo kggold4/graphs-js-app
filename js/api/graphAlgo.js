@@ -48,8 +48,6 @@ class GraphAlgo {
                 }
             }
                 
-            
-
             // set node as visited = BLACK
             colors[u.id] = Color.BLACK;
         }
