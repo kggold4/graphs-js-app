@@ -5,7 +5,7 @@ function getPosition() {
     return [Math.random(), Math.random(), 0];
 }
 
-// distance function between two nodes
+// calculate distance function between two nodes
 function distance(node1, node2) {
     var deltaX = node1.getPosition[0] - node2.getPosition[0];
     var deltaY = node1.getPosition[1] - node2.getPosition[1];

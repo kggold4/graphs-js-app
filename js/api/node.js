@@ -4,7 +4,8 @@ class Node {
     // constructor
     constructor(id = node_counter, position = getPosition(), tag = 0, info = "") {
         this.id = id;
-        this.position = position;
+        if(position == null) this.position = getPosition();
+        else this.position = position;
         this.tag = tag;
         this.info = info;
         node_counter++;

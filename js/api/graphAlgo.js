@@ -16,7 +16,7 @@ class GraphAlgo {
     }
 
     isConnected() {
-
+        
     }
 
     shortestPath(id1, id2) {
