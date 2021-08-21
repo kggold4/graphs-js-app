@@ -59,6 +59,7 @@ class GraphAlgo {
         return true;
     }
 
+    // returning the shortest path between two nodes using Dijkstra algorithm
     shortestPath(id1, id2) {
         let empty = []
         if(this.graph.nodeSize() == 0 || !this.graph.hasNode(id1) || !this.graph.hasNode(id2)) return empty;
