@@ -38,13 +38,17 @@ class GraphAlgo {
         // BFS algorithm
         while(!q.empty()) {
             let u = q.dequeue();
-            for(const v in this.graph.getChilds(u.id)) {
+            let neightbors = this.graph.getChilds(u.id);
+            for(let i = 0; i < neightbors.length; i++) {
+                let v = neightbors[i];
                 if(colors[v] == Color.WHITE) {
                     colors[v] = Color.GREY;
                     let v_node = this.graph.getNode(v);
                     q.enqueue(v_node);
                 }
             }
+                
+            
 
             // set node as visited = BLACK
             colors[u.id] = Color.BLACK;
