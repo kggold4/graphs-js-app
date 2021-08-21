@@ -17,6 +17,9 @@ class GraphAlgo {
 
     isConnected() {
         this.color = []
+
+        q = new Queue();
+        
         
         
     }
