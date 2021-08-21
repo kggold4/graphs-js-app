@@ -3,7 +3,7 @@ class Queue {
     constructor() { this.elements = []; }
     enqueue(item) { this.elements.push(item); }
     dequeue() { return this.elements.shift(); }
-    peek() { return !this.isEmpty() ? this.elements[0] : undefined; }
+    peek() { return !this.empty() ? this.elements[0] : undefined; }
     size() { return this.elements.length; }
-    isEmpty() { return this.size() == 0; }
+    empty() { return this.size() == 0; }
 }

@@ -41,11 +41,11 @@ class Graph {
         if(this.hasNode(id)) return false;
 
         // create new node
-        var node = new Node(id, position, tag, info);
+        let node = new Node(id, position, tag, info);
 
         // push to nodes and childes
         this.nodes.push(node);
-        this.childes[id] = []
+        this.childes[id] = [];
         this.addMc();
         return true;
     }

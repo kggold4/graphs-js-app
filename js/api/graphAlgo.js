@@ -21,23 +21,39 @@ class GraphAlgo {
         // if the graph is empty return true
         if(this.graph.empty() || this.graph.nodeSize() == 1) return true;
 
+        // for each id of node in the graph add to colors with WHITE value
         let colors = {}
-        let i = 0;
-
         for(const node in this.graph.nodes) {
-            colors[node] = Color.WHITE;
-            i++;
+            colors[this.graph.nodes[node].id] = Color.WHITE;
         }
 
-        console.log(colors);
-        let color = []
-
-
+        // getting the first node in the graph and add it to the queue
         let startNode = this.graph.nodes[0];
-
         let q = new Queue();
-        q.enqueue()
-        
+        q.enqueue(startNode);
+
+        // set the first node as GREY
+        colors[startNode.id] = Color.GREY;
+
+        // BFS algorithm
+        while(!q.empty()) {
+            let u = q.dequeue();
+            for(const v in this.graph.getChilds(u.id)) {
+                if(colors[v] == Color.WHITE) {
+                    colors[v] = Color.GREY;
+                    let v_node = this.graph.getNode(v);
+                    q.enqueue(v_node);
+                }
+            }
+
+            // set node as visited = BLACK
+            colors[u.id] = Color.BLACK;
+        }
+
+        // if all the nodes are visited (BLACK) return true, else: return false
+        for(const [key, value] of Object.entries(colors)) {
+            if(value != Color.BLACK) return false;
+        }
         return true;
     }
 
