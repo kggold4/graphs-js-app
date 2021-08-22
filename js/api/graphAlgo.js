@@ -35,8 +35,6 @@ class GraphAlgo {
         // set the first node as GREY
         colors[startNode.id] = Color.GREY;
 
-        console.log(colors);
-
         // BFS algorithm
         while(!q.empty()) {
             let u = q.dequeue();
@@ -49,12 +47,9 @@ class GraphAlgo {
                     q.enqueue(v_node);
                 }
             }
-                
             // set node as visited = BLACK
             colors[u.id] = Color.BLACK;
         }
-
-        console.log(colors);
 
         // if all the nodes are visited (BLACK) return true, else: return false
         for(const [key, value] of Object.entries(colors)) {
@@ -65,10 +60,14 @@ class GraphAlgo {
 
     // returning the shortest path between two nodes using Dijkstra algorithm
     shortestPath(id1, id2) {
+
         let empty = []
         if(this.graph.nodeSize() == 0 || !this.graph.hasNode(id1) || !this.graph.hasNode(id2)) return empty;
 
-        let inf = Number.MAX_VALUE;
+        let node1 = this.graph.getNode(id1);
+        let node2 = this.graph.getNode(id2);
+
+        let inf = 100000;
 
         let visited = {};
         let dist = {};
@@ -79,7 +78,40 @@ class GraphAlgo {
             dist[this.graph.nodes[node].id] = inf;
             prev[this.graph.nodes[node].id] = null;
         }
-        
+
+        // getting the first node in the graph and add it to the priority queue
+        let q = new PriorityQueue();
+        q.enqueue(node1);
+        dist[id1] = 0;
+
+        // Dijkstra algorithm
+        while(!q.empty()) {
+            let u = q.dequeue();
+            let neightbors = this.graph.getChilds(u.id);
+            for(let i = 0; i < neightbors.length; i++) {
+                let v = neightbors[i];
+                let v_node = this.graph.getNode(v);
+                if(visited[v] == false && (dist[v] > dist[u.id] + distance(u, v_node))) {
+                    q.enqueue(v_node);
+                    dist[v] = dist[u.id] + distance(u, v_node);
+                    prev[v] = u;
+                }
+            }
+            visited[u.id] = true;
+            if(u.id == id2) break;
+        }
+
+        // build the path from node2 to id1 nodes
+        let path = [];
+        let t = node2;
+        while(prev[t.id] != null) {
+            path.push(t.id);
+            t = prev[t.id];
+        }
+        path.push(id1);
+
+        // return reversed path
+        return path.reverse();
     }
 
     shortestPathDist(id1, id2) {
