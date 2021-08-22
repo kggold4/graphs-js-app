@@ -58,7 +58,7 @@ class GraphAlgo {
         return true;
     }
 
-    // returning the shortest path between two nodes using Dijkstra algorithm
+    // return the shortest path between two nodes using Dijkstra algorithm
     shortestPath(id1, id2) {
 
         let empty = []
@@ -114,7 +114,48 @@ class GraphAlgo {
         return path.reverse();
     }
 
+    // return the distance between two nodes using Dijkstra algorithm
     shortestPathDist(id1, id2) {
+        
+        if(this.graph.nodeSize() == 0 || !this.graph.hasNode(id1) || !this.graph.hasNode(id2)) return -1;
 
+        let node1 = this.graph.getNode(id1);
+        let node2 = this.graph.getNode(id2);
+
+        let inf = 100000;
+
+        let visited = {};
+        let dist = {};
+        let prev = {};
+
+        for(const node in this.graph.nodes) {
+            visited[this.graph.nodes[node].id] = false;
+            dist[this.graph.nodes[node].id] = inf;
+            prev[this.graph.nodes[node].id] = null;
+        }
+
+        // getting the first node in the graph and add it to the priority queue
+        let q = new PriorityQueue();
+        q.enqueue(node1);
+        dist[id1] = 0;
+
+        // Dijkstra algorithm
+        while(!q.empty()) {
+            let u = q.dequeue();
+            let neightbors = this.graph.getChilds(u.id);
+            for(let i = 0; i < neightbors.length; i++) {
+                let v = neightbors[i];
+                let v_node = this.graph.getNode(v);
+                if(visited[v] == false && (dist[v] > dist[u.id] + distance(u, v_node))) {
+                    q.enqueue(v_node);
+                    dist[v] = dist[u.id] + distance(u, v_node);
+                    prev[v] = u;
+                }
+            }
+            visited[u.id] = true;
+            if(u.id == id2) break;
+        }
+
+        return dist[id2];
     }
 }
