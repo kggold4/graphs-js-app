@@ -137,6 +137,13 @@ class Graph {
     // add 1 to the mode count
     addMc() { this.mc++; }
 
+    // return a list with all nodes id (integer) that the graph contains
+    getNodesList() {
+        let ids = [];
+        for(var n in this.nodes) ids.push(parseInt(n));
+        return ids;
+    }
+
     // console graph
     print() {
         console.log("graph nodes:", this.nodes);

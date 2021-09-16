@@ -4,7 +4,7 @@ class GraphAlgo {
     }
 
     copy() {
-        
+        // for(node in this.graph.get)
     }
 
     init(graph) {
@@ -120,9 +120,8 @@ class GraphAlgo {
         if(this.graph.nodeSize() == 0 || !this.graph.hasNode(id1) || !this.graph.hasNode(id2)) return -1;
 
         let node1 = this.graph.getNode(id1);
-        let node2 = this.graph.getNode(id2);
 
-        let inf = 100000;
+        const inf = 100000;
 
         let visited = {};
         let dist = {};
