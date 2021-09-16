@@ -114,7 +114,7 @@ class GraphAlgo {
         return path.reverse();
     }
 
-    // return the distance between two nodes using Dijkstra algorithm
+    // return the shortest distance between two nodes using Dijkstra algorithm
     shortestPathDist(id1, id2) {
         
         if(this.graph.nodeSize() == 0 || !this.graph.hasNode(id1) || !this.graph.hasNode(id2)) return -1;
