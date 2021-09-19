@@ -1,4 +1,48 @@
-#node {
-    border-radius: 50%;
+.node {
+    position: absolute;
+    font-size: 0.8rem;
+    color: white;
     background: var(--blue);
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    margin: auto;
+    padding: 4px;
+    z-index: 2;
+}
+
+.pos {
+    display: none;
+    position: absolute;
+    font-size: 0.8rem;
+    color: white;
+    background: var(--darkblue);
+    opacity: 0.8;
+    border-radius: 10px;
+    margin: auto;
+    padding: 4px 10px;
+    z-index: 3;
+}
+
+.edge {
+    position: absolute;
+    stroke: red;
+    stroke-width: 2px;
+    z-index: 1;
+    width: 100%;
+    height: 100vh;
+    margin: auto;
+    padding: 15px;
+    left: 0;
+    top: 0;
+}
+
+.dist {
+    /* display: none; */
+    position: absolute;
+    font-size: 0.8rem;
+    color: white;
+    background: var(--darkblue);
+    opacity: 0.8;
+    z-index: 3;
 }
