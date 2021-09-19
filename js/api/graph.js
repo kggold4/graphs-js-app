@@ -96,6 +96,12 @@ class Graph {
         else return this.childes[id1].includes(id2);
     }
 
+    // return the distance of edge between two nodes
+    getEdgeDistance(id1, id2) {
+        if(!this.hasEdge(id1, id2)) return -1;
+        else return distance(this.getNode(id1), this.getNode(id2));
+    }
+
     // connect between two nodes in the graph (id1 and id2 are id number of nodes in the graph)
     addEdge(id1, id2) {
         if(!this.hasNode(id1) || !this.hasNode(id2) || this.hasEdge(id1, id2) || id1 == id2) return false;
