@@ -157,4 +157,15 @@ class GraphAlgo {
 
         return dist[id2];
     }
+
+diameterDistance() {
+    if(this.graph == null || this.graph.empty() || this.graph.nodeSize < 1) {
+        return 0;
+    }
+}
+
+// diameterPath() {
+
+// }
+
 }
