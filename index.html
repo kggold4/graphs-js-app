@@ -8,24 +8,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- title -->
-    <title> Graphs </title>
+    <title>Graphs</title>
 
     <!-- javascript -->
-    <!-- api -->
-    <script src="js/api/color.js"></script>
-    <script src="js/api/external.js"></script>
-    <script src="js/api/graph.js"></script>
-    <script src="js/api/graphAlgo.js"></script>
-    <script src="js/api/graphCreator.js"></script>
-    <script src="js/api/node.js"></script>
-    <script src="js/api/PriorityQueue.js"></script>
-    <script src="js/api/queue.js"></script>
-    
-    <!-- gui -->
-    <script src="js/gui/main.js"></script>
+
+        <!-- controller -->
+        <script src="js/controller.js"></script>
+
+        <!-- api -->
+        <script src="js/api/color.js"></script>
+        <script src="js/api/external.js"></script>
+        <script src="js/api/graph.js"></script>
+        <script src="js/api/graphAlgo.js"></script>
+        <script src="js/api/graphCreator.js"></script>
+        <script src="js/api/node.js"></script>
+        <script src="js/api/PriorityQueue.js"></script>
+        <script src="js/api/queue.js"></script>
+        <script src="js/api/stack.js"></script>
+        
+        <!-- gui -->
+        <script src="js/gui/main.js"></script>
+        <script src="js/gui/border.js"></script>
 
     <!-- css -->
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/graph.css">
 
 </head>
 <body onload="start();">
@@ -34,50 +41,52 @@
 
     <script>
 
-        let g0 = new Graph();
-        g0.addNode(0, null, 0, "1th");
-        g0.addNode(1, null, 0, "2th");
-        g0.addNode(2, null, 0, "3th");
-        g0.addNode(3, null, 0, "4th");
-        g0.addNode(4, null, 0, "5th");
-        g0.addNode(5, null, 0, "6th");
-        g0.addNode(6, null, 0, "7th");
-        g0.addNode(7, null, 0, "8th");
-        g0.addNode(8, null, 0, "9th");
+        let controller = new Controller();
+        controller.addNode
 
-        console.log("nodes list: ", g0.getNodesList());
+        controller.addNode(0, null, 0, "1th");
+        controller.addNode(1, null, 0, "2th");
+        controller.addNode(2, null, 0, "3th");
+        controller.addNode(3, null, 0, "4th");
+        controller.addNode(4, null, 0, "5th");
+        controller.addNode(5, null, 0, "6th");
+        controller.addNode(6, null, 0, "7th");
+        controller.addNode(7, null, 0, "8th");
+        controller.addNode(8, null, 0, "9th");
+
+        console.log("nodes list: ", controller.getNodesList());
 
         console.log("has node");
-        console.log(g0.hasNode(0));
-        console.log(g0.hasNode(1));
-        console.log(g0.hasNode(2));
+        console.log(controller.hasNode(0));
+        console.log(controller.hasNode(1));
+        console.log(controller.hasNode(2));
 
-        g0.addEdge(0,1);
-        g0.addEdge(0,2);
-        g0.addEdge(0,3);
-        g0.addEdge(0,4);
-        g0.addEdge(0,5);
-        g0.addEdge(5,6);
-        g0.addEdge(6,7);
-        g0.addEdge(6,8);
-        // g0.addEdge(8,0);
+        controller.addEdge(0,1);
+        controller.addEdge(0,2);
+        controller.addEdge(0,3);
+        controller.addEdge(0,4);
+        controller.addEdge(0,5);
+        controller.addEdge(5,6);
+        controller.addEdge(6,7);
+        controller.addEdge(6,8);
+        // controller.addEdge(8,0);
 
         console.log("has edge");
 
-        // console.log(g0.removeNode(0));
-        console.log(g0.hasEdge(0,1));
-        console.log(g0.hasEdge(0,3));
-        console.log(g0.hasEdge(4,0));
-        console.log(g0.hasEdge(6,8));
+        // console.log(controller.removeNode(0));
+        console.log(controller.hasEdge(0,1));
+        console.log(controller.hasEdge(0,3));
+        console.log(controller.hasEdge(4,0));
+        console.log(controller.hasEdge(6,8));
 
-        g0.print();
+        controller.refresh_graph();
 
-        ga0 = new GraphAlgo(g0);
-        console.log(ga0.isConnected());
-        console.log("shortest path from 0 to 8 : ", ga0.shortestPath(0,8));
-        console.log("shortest path from 0 to 8 : ", ga0.shortestPathDist(0,8));
-        console.log("diameter distance : ", ga0.diameterDistance());
-        
+        console.log(controller.isConnected());
+        console.log("shortest path from 0 to 8 : ", controller.shortestPath(0,8));
+        console.log("shortest path from 0 to 8 : ", controller.shortestPathDist(0,8));
+        console.log("diameter distance : ", controller.diameterDistance());
+
+        controller.graph.print();
 
     </script>
     
