@@ -105,7 +105,7 @@ class GraphAlgo {
         let empty = []
         if(this.graph.nodeSize() == 0 || !this.graph.hasNode(id1) || !this.graph.hasNode(id2)) return empty;
 
-        let prev = this.dijkstra(id1)[0];
+        let prev = this.dijkstra(id1)[2];
         let node2 = this.graph.getNode(id2);
 
         // build the path from node2 to id1 nodes
@@ -135,9 +135,13 @@ class GraphAlgo {
 
         // get random node from the graph
         let nodes = this.graph.getNodesList();
-        let random_node = nodes[Math.random() * (nodes.length) - 1];
+        console.log("nodes: ", nodes);
+        let r = Math.round(Math.random() * (nodes.length));
+        console.log("r: ", r);
+        let random_node = nodes[r];
 
-        let dist = this.dijkstra(random_node, dist_return = true);
+        console.log("random node: ", random_node, typeof(random_node));
+        let dist = this.dijkstra(random_node)[1];
         let far_node_id = 0;
         let max_dist = 0;
         
@@ -148,7 +152,7 @@ class GraphAlgo {
             }
         }
 
-        let second_dist = this.dijkstra(far_node_id, dist_return = true);
+        let second_dist = this.dijkstra(far_node_id)[1];
         max_dist = 0;
 
         for(const [key, value] of Object.entries(second_dist)) {
