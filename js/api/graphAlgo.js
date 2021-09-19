@@ -1,3 +1,5 @@
+const inf = 100000;
+
 class GraphAlgo {
     constructor(graph = null) {
         this.init(graph);
@@ -19,9 +21,6 @@ class GraphAlgo {
     dijkstra(startNodeID) {
 
         let startNode = this.graph.getNode(startNodeID);
-
-        const inf = 100000;
-
         let visited = {};
         let dist = {};
         let prev = {};
@@ -135,12 +134,11 @@ class GraphAlgo {
 
         // get random node from the graph
         let nodes = this.graph.getNodesList();
-        console.log("nodes: ", nodes);
-        let r = Math.round(Math.random() * (nodes.length));
-        console.log("r: ", r);
-        let random_node = nodes[r];
+        let r = Math.round(Math.random() * (nodes.length) - 1);
 
-        console.log("random node: ", random_node, typeof(random_node));
+        if(r < 0) r = Math.abs(r);
+        
+        let random_node = nodes[r];
         let dist = this.dijkstra(random_node)[1];
         let far_node_id = 0;
         let max_dist = 0;
@@ -156,7 +154,7 @@ class GraphAlgo {
         max_dist = 0;
 
         for(const [key, value] of Object.entries(second_dist)) {
-            if(value > max_dist) {
+            if(value > max_dist && value != inf) {
                 max_dist = value;
             }
         }
