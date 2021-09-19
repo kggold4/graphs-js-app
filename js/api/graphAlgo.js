@@ -16,7 +16,7 @@ class GraphAlgo {
     }
 
     // implementation of dijkstra algorithm function
-    dijkstra(startNodeID, visited_return = false, dist_return = false, prev_return = false) {
+    dijkstra(startNodeID) {
 
         let startNode = this.graph.getNode(startNodeID);
 
@@ -35,7 +35,7 @@ class GraphAlgo {
         // getting the first node in the graph and add it to the priority queue
         let q = new PriorityQueue();
         q.enqueue(startNode);
-        dist[id1] = 0;
+        dist[startNodeID] = 0;
 
         // Dijkstra algorithm
         while(!q.empty()) {
@@ -51,12 +51,9 @@ class GraphAlgo {
                 }
             }
             visited[u.id] = true;
-            if(u.id == id2) break;
         }
 
-        if(visited_return) return visited;
-        else if(dist_return) return dist;
-        else return prev;
+        return [visited, dist, prev];
     }
 
     // return true if all the nodes in the graph are connected with edges using BFS algorithm
@@ -108,7 +105,8 @@ class GraphAlgo {
         let empty = []
         if(this.graph.nodeSize() == 0 || !this.graph.hasNode(id1) || !this.graph.hasNode(id2)) return empty;
 
-        let prev = this.dijkstra(id1, prev_return = true);
+        let prev = this.dijkstra(id1)[0];
+        let node2 = this.graph.getNode(id2);
 
         // build the path from node2 to id1 nodes
         let path = [];
@@ -126,7 +124,7 @@ class GraphAlgo {
     // return the shortest distance between two nodes using Dijkstra algorithm
     shortestPathDist(id1, id2) {
         if(this.graph.nodeSize() == 0 || !this.graph.hasNode(id1) || !this.graph.hasNode(id2)) return -1;
-        dist = this.dijkstra(id1, dist_return = true);
+        let dist = this.dijkstra(id1)[1];
         return dist[id2];
     }
 
@@ -138,7 +136,7 @@ class GraphAlgo {
         // get random node from the graph
         let nodes = this.graph.getNodesList();
         let random_node = nodes[Math.random() * (nodes.length) - 1];
-        
+
         let dist = this.dijkstra(random_node, dist_return = true);
         let far_node_id = 0;
         let max_dist = 0;
@@ -164,7 +162,5 @@ class GraphAlgo {
     // diameterPath() {
 
     // }
-
-    
 
 }
