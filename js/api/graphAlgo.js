@@ -1,21 +1,40 @@
 const inf = 100000;
 
 class GraphAlgo {
-    constructor(graph = null) {
-        this.init(graph);
-    }
+    constructor(graph = null) { this.init(graph); }
 
+    // return a deep copy of the current graph
     copy() {
-        // for(node in this.graph.get)
+
+        if(this.graph == null) return null;
+        
+        // create new graph
+        let new_graph = new Graph;
+
+        // get current nodes id's list
+        let new_nodes_list = this.graph.getNodesList();
+
+        // add all nodes by id's
+        for(const node_id in new_nodes_list) {
+            new_graph.addNode(node_id);
+        }
+
+        // connect between nodes
+        for(const node_id in new_nodes_list) {
+            let new_childs = this.graph.getChilds(node_id);
+            for(const child in new_childs) {
+                new_graph.addEdge(node_id, child);
+            }
+        }
+
+        return new_graph;
     }
 
-    init(graph) {
-        this.graph = graph;
-    }
+    // initialize a graph to the graph
+    init(graph) { this.graph = graph; }
 
-    getGraph() {
-        return this.graph;
-    }
+    // return the current graph
+    getGraph() { return this.graph; }
 
     // implementation of dijkstra algorithm function
     dijkstra(startNodeID) {
@@ -57,6 +76,8 @@ class GraphAlgo {
 
     // return true if all the nodes in the graph are connected with edges using BFS algorithm
     isConnected() {
+
+        if(this.graph == null) return false;
 
         // if the graph is empty return true
         if(this.graph.empty() || this.graph.nodeSize() == 1) return true;
@@ -102,7 +123,7 @@ class GraphAlgo {
     shortestPath(id1, id2) {
 
         let empty = []
-        if(this.graph.nodeSize() == 0 || !this.graph.hasNode(id1) || !this.graph.hasNode(id2)) return empty;
+        if(this.graph == null || this.graph.nodeSize() == 0 || !this.graph.hasNode(id1) || !this.graph.hasNode(id2)) return empty;
 
         let prev = this.dijkstra(id1)[2];
         let node2 = this.graph.getNode(id2);
@@ -122,11 +143,12 @@ class GraphAlgo {
 
     // return the shortest distance between two nodes using Dijkstra algorithm
     shortestPathDist(id1, id2) {
-        if(this.graph.nodeSize() == 0 || !this.graph.hasNode(id1) || !this.graph.hasNode(id2)) return -1;
+        if(this.graph == null || this.graph.nodeSize() == 0 || !this.graph.hasNode(id1) || !this.graph.hasNode(id2)) return -1;
         let dist = this.dijkstra(id1)[1];
         return dist[id2];
     }
 
+    // return the distance of the graph diameter
     diameterDistance() {
         if(this.graph == null || this.graph.empty() || this.graph.nodeSize <= 1) {
             return 0;
