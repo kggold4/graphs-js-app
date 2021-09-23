@@ -44,55 +44,57 @@
     <script>
 
         let controller = new Controller();
-        controller.addNode
-
-        controller.addNode(0, null, 0, "1th");
-        controller.addNode(1, null, 0, "2th");
-        controller.addNode(2, null, 0, "3th");
-        controller.addNode(3, null, 0, "4th");
-        controller.addNode(4, null, 0, "5th");
-        controller.addNode(5, null, 0, "6th");
-        controller.addNode(6, null, 0, "7th");
-        controller.addNode(7, null, 0, "8th");
-        controller.addNode(8, null, 0, "9th");
-
-        console.log("nodes list: ", controller.getNodesList());
-
-        console.log("has node");
-        console.log(controller.hasNode(0));
-        console.log(controller.hasNode(1));
-        console.log(controller.hasNode(2));
-
-        controller.addEdge(0,1);
-        controller.addEdge(0,2);
-        controller.addEdge(0,3);
-        controller.addEdge(0,4);
-        controller.addEdge(0,5);
-        controller.addEdge(5,6);
-        controller.addEdge(6,7);
-        controller.addEdge(6,8);
-        controller.addEdge(2,6);
-        // controller.addEdge(8,0);
-
-        console.log("has edge");
-
-        // console.log(controller.removeNode(0));
-        console.log(controller.hasEdge(0,1));
-        console.log(controller.hasEdge(0,3));
-        console.log(controller.hasEdge(4,0));
-        console.log(controller.hasEdge(6,8));
-
+        controller.createGraph(100, 100);
+        controller.graph.print();
         controller.refresh_graph();
+
+        // controller.addNode(0, null, 0, "1th");
+        // controller.addNode(1, null, 0, "2th");
+        // controller.addNode(2, null, 0, "3th");
+        // controller.addNode(3, null, 0, "4th");
+        // controller.addNode(4, null, 0, "5th");
+        // controller.addNode(5, null, 0, "6th");
+        // controller.addNode(6, null, 0, "7th");
+        // controller.addNode(7, null, 0, "8th");
+        // controller.addNode(8, null, 0, "9th");
+
+        // console.log("nodes list: ", controller.getNodesList());
+
+        // console.log("has node");
+        // console.log(controller.hasNode(0));
+        // console.log(controller.hasNode(1));
+        // console.log(controller.hasNode(2));
+
+        // controller.addEdge(0,1);
+        // controller.addEdge(0,2);
+        // controller.addEdge(0,3);
+        // controller.addEdge(0,4);
+        // controller.addEdge(0,5);
+        // controller.addEdge(5,6);
+        // controller.addEdge(6,7);
+        // controller.addEdge(6,8);
+        // controller.addEdge(2,6);
+        // // controller.addEdge(8,0);
+
+        // console.log("has edge");
+
+        // // console.log(controller.removeNode(0));
+        // console.log(controller.hasEdge(0,1));
+        // console.log(controller.hasEdge(0,3));
+        // console.log(controller.hasEdge(4,0));
+        // console.log(controller.hasEdge(6,8));
+
+        // controller.refresh_graph();
 
         console.log(controller.isConnected());
         console.log("shortest path from 0 to 8 : ", controller.shortestPath(0,8));
         console.log("shortest path from 0 to 8 : ", controller.shortestPathDist(0,8));
         console.log("diameter distance : ", controller.diameterDistance());
 
-        controller.graph.print();
+        // controller.graph.print();
 
-        console.log("getChilds(6): ", controller.graph.getChilds(6));
-        console.log("getParents(6): ", controller.graph.getParents(6));
+        // console.log("getChilds(6): ", controller.graph.getChilds(6));
+        // console.log("getParents(6): ", controller.graph.getParents(6));
 
     </script>
     
