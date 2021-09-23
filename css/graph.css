@@ -38,11 +38,13 @@
 }
 
 .dist {
-    /* display: none; */
+    display: none;
     position: absolute;
     font-size: 0.8rem;
     color: white;
-    background: var(--darkblue);
+    border-radius: 2px;
+    padding: 2px;
+    background: var(--blue);
     opacity: 0.8;
     z-index: 3;
 }
