@@ -23,3 +23,10 @@ Object.size = function(obj) {
     for(var key in obj) if(obj.hasOwnProperty(key)) size++;
     return size;
 };
+
+// return a random integer between min and max numbers (both inclusive)
+function randIntBetween(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}

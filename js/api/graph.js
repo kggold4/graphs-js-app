@@ -126,7 +126,10 @@ class Graph {
     }
 
     // return the child of a specific node
-    getChilds(id) { return this.childes[id]; }
+    getChilds(id) {
+        let childs = this.childes[id];
+        return childs == null ? []: childs;
+    }
 
     // return the parents of a specific node
     getParents(id) {
@@ -157,7 +160,9 @@ class Graph {
     // return a list with all nodes id (integer) that the graph contains
     getNodesList() {
         let ids = [];
-        for(var n in this.nodes) ids.push(parseInt(n));
+        for(const node of this.nodes) {
+            ids.push(node.id);
+        }
         return ids;
     }
 

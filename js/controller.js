@@ -33,25 +33,23 @@ class Controller {
 
     drawEdges() {
         for(const node_id of this.graph.getNodesList()) {
+            console.log("node_id is: ", node_id);
             for(const child of this.graph.getChilds(node_id)) {
                 this.border.drawEdge(this.graph.getNode(node_id),
-                                     this.graph.getNode(child),
-                                     this.graph.getEdgeDistance(parseInt(node_id), parseInt(child)));
+                                        this.graph.getNode(child),
+                                        this.graph.getEdgeDistance(parseInt(node_id), parseInt(child)));
             }
+            
         }
-        
     }
 
     /**
      * Graph data structure functions
      */
 
-    // initialize the graph to the graph algo
-    initAlgo() {
-        let g = this.graphAlgo.getGraph();
-        if(g == null || this.graph.getMc() != g.getMc()) {
-            this.graphAlgo.init(this.graph);
-        }
+    createGraph(n, e) {
+        this.graph = createRandomGraph(n, e);
+        this.initAlgo();
     }
 
     // each operation save the state current graph in the prev stack
@@ -108,6 +106,14 @@ class Controller {
     /**
      * Graph algorithms functions
      */
+
+    // initialize the graph to the graph algo
+    initAlgo() {
+        let g = this.graphAlgo.getGraph();
+        if(g == null || this.graph.getMc() != g.getMc()) {
+            this.graphAlgo.init(this.graph);
+        }
+    }
 
     // return true if all the nodes in the graph are connected with edges using BFS algorithm
     isConnected() {

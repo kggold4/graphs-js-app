@@ -12,3 +12,26 @@ function distance(node1, node2) {
     var deltaZ = node1.getPosition()[2] - node2.getPosition()[2];
     return Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2) + Math.pow(deltaZ, 2));
 }
+
+function createRandomGraph(n, e, start_counter_nodes = 1) {
+    let graph = new Graph();
+    for(var i = start_counter_nodes; i <= n; i++) {
+        graph.addNode(i);
+    }
+    let count_edges = 0;
+    while(count_edges < e) {
+        let id1 = randIntBetween(start_counter_nodes, n);
+        let id2 = randIntBetween(start_counter_nodes, n);
+        console.log("(start) id1: ", id1, ", id2: ", id2);
+
+        while(id1 === id2 || graph.hasEdge(id1, id2)) {
+            id1 = randIntBetween(start_counter_nodes, n);
+            id2 = randIntBetween(start_counter_nodes, n);
+            console.log("(same) id1: ", id1, ", id2: ", id2);
+        }
+
+        graph.addEdge(id1, id2);
+        count_edges++;
+    }
+    return graph;
+}

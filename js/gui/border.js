@@ -12,9 +12,9 @@ function hidePos(id) {
 }
 
 function showDist(id, childs, parents) {
-    console.log("(show) id: ", id, "childs: ", childs, "parents: ", parents);
     if(childs.length > 0) {
         for(const i of childs) {
+            console.log("dist ", id, ", to ", i);
             document.getElementById("dist" + id + "to" + i).style.display = "block";
         }
     }
@@ -26,7 +26,6 @@ function showDist(id, childs, parents) {
 }
 
 function hideDist(id, childs, parents) {
-    console.log("(hide) id: ", id, "childs: ", childs, "parents: ", parents);
     if(childs.length > 0) {
         for(const i of childs) {
             document.getElementById("dist" + id + "to" + i).style.display = "none";
@@ -79,6 +78,7 @@ class Border {
     }
 
     drawEdge(node1, node2, dist) {
+        console.log("draw edge between ", node1.id, ", and ", node2.id);
         var content = '';
         content += '<svg class="edge"\
             >';
