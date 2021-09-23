@@ -11,15 +11,32 @@ function hidePos(id) {
     pos.style.display="none";
 }
 
-function showDist(id1, id2) {
-    console.log("show dist between ", id1, ", and ", id2);
-    let dist = document.getElementById(String("dist" + id1 + "to" + id2));
-    dist.style.display = 'block';
+function showDist(id, childs, parents) {
+    console.log("(show) id: ", id, "childs: ", childs, "parents: ", parents);
+    if(childs.length > 0) {
+        for(const i of childs) {
+            document.getElementById("dist" + id + "to" + i).style.display = "block";
+        }
+    }
+    if(parents.length > 0) {
+        for(const i of parents) {
+            document.getElementById("dist" + i + "to" + id).style.display = "block";
+        }
+    }
 }
 
-function hideDist(id1, id2) {
-    let dist = document.getElementById(String("dist" + id1 + "to" + id2));
-    dist.style.display = 'none';
+function hideDist(id, childs, parents) {
+    console.log("(hide) id: ", id, "childs: ", childs, "parents: ", parents);
+    if(childs.length > 0) {
+        for(const i of childs) {
+            document.getElementById("dist" + id + "to" + i).style.display = "none";
+        }
+    }
+    if(parents.length > 0) {
+        for(const i of parents) {
+            document.getElementById("dist" + i + "to" + id).style.display = "none";
+        }
+    }
 }
 
 class Border {
@@ -32,13 +49,13 @@ class Border {
         main.innerHTML = current_content + content;
     }
 
-    drawNode(id, position, info, tag) {
+    drawNode(id, position, info, tag, childs, parents) {
         let content = '';
         content += '<span\
             id="' + String("node" + id) + '"\
             class="node"\
-            onmouseover="showPos(' + id + ');"\
-            onmouseout="hidePos(' + id +');"\
+            onmouseover="showPos(' + id + ');showDist(' + id + ',[' + childs + '],[' + parents + ']);"\
+            onmouseout="hidePos(' + id +');hideDist(' + id + ',[' + childs + '],[' + parents + ']);"\
             >';
         content += info;
         content += '</span>';
@@ -46,9 +63,9 @@ class Border {
             id="' + String("pos" + id) + '"\
             class="pos"\
             >';
-        content += "X: " + position[0].toFixed(3);
+        content += '<span class="small bold italic">X:</span> ' + position[0].toFixed(3);
         content += ', '
-        content += "Y: " + position[1].toFixed(3);
+        content += '<span class="small bold italic">Y:</span> ' + position[1].toFixed(3);
         content += '</span>';
         this.addToMain(content);
         let node = document.getElementById(String("node" + id));
@@ -62,10 +79,8 @@ class Border {
     }
 
     drawEdge(node1, node2, dist) {
-        let content = '';
+        var content = '';
         content += '<svg class="edge"\
-            onmouseover="showDist(' + node1.id + ',' + node2.id + ');"\
-            onmouseout="hideDist(' + node1.id + ',' + node2.id + ');"\
             >';
         content += '<line\
             id="' + String("edge" + node1.id + "to" + node2.id) + '"\
@@ -80,6 +95,7 @@ class Border {
             id="' + String("dist" + node1.id + "to" + node2.id) + '"\
             class="dist"\
             >';
+        content += '<span class="small bold italic">dist: </span>';
         content += dist.toFixed(3);;
         content += '</span>';
         this.addToMain(content);

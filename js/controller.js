@@ -22,7 +22,12 @@ class Controller {
 
     drawNodes() {
         for(const node of this.graph.nodes) {
-            this.border.drawNode(node.id, node.position, node.info, node.tag);
+            this.border.drawNode(node.id,
+                                 node.position,
+                                 node.info,
+                                 node.tag,
+                                 this.graph.getChilds(node.id),
+                                 this.graph.getParents(node.id));
         }
     }
 
