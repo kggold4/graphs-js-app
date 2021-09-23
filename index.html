@@ -71,6 +71,7 @@
         controller.addEdge(5,6);
         controller.addEdge(6,7);
         controller.addEdge(6,8);
+        controller.addEdge(2,6);
         // controller.addEdge(8,0);
 
         console.log("has edge");
@@ -89,6 +90,9 @@
         console.log("diameter distance : ", controller.diameterDistance());
 
         controller.graph.print();
+
+        console.log("getChilds(6): ", controller.graph.getChilds(6));
+        console.log("getParents(6): ", controller.graph.getParents(6));
 
     </script>
     
