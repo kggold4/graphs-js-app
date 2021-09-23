@@ -128,6 +128,17 @@ class Graph {
     // return the child of a specific node
     getChilds(id) { return this.childes[id]; }
 
+    // return the parents of a specific node
+    getParents(id) {
+        let parents = [];
+        for(const node of this.nodes) {
+            if(this.childes[node.id].includes(id)) {
+                parents.push(node.id);
+            }
+        }
+        return parents;
+    }
+
     // return number of nodes in the graph
     nodeSize() { return this.nodes.length; }
 
