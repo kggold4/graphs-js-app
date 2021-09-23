@@ -33,7 +33,6 @@ html, body {
 main {
     width: 1000px;
     height: 500px;
-    background: var(--lightblue);
 }
 
 .abs {
