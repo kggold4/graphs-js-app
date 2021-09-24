@@ -10,7 +10,9 @@
     --blue: #2d5277;
     --lightblue: #e3effa;
     --darkblue: #1b3046;
+
     --red: #db2b2b;
+    --darkred: #821515;
 }
 
 * {
@@ -34,14 +36,135 @@ main {
     height: 70vh;
 }
 
+input {
+    border-radius: 0px;
+    border: 1px solid var(--darkblue);
+    padding: 3px 6px;
+    text-align: left;
+}
+
+section {
+    border-top: 1px solid var(--black);
+    padding: 20px 10%;
+    text-align: left;
+}
+
+section > h3 {
+    margin: 20px 0;
+}
+
+footer {
+    border-top: 1px solid var(--black);
+    padding-top: 20px;
+}
+
+.block {
+    display: block;
+}
+
+.inline {
+    display: inline;
+}
+
+.collapsible {
+    background-color: #777;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+}
+
+.active, .collapsible:hover {
+    background-color: #555;
+}
+
+.content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+    padding: 0 20%;
+    text-align: center;
+}
+
+.width-50 {
+    width: 50px;
+}
+
 .small {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
+}
+
+.big {
+    font-size: 1.5rem;
 }
 
 .bold {
     font-weight: bold;
 }
 
+.left {
+    text-align: left;
+}
+
+.right {
+    text-align: right;
+}
+
+.bold-300 {
+    font-width: 300;
+}
+
 .italic {
     font-style: italic;
+}
+
+.normal {
+    font-style: normal;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.btn1 {
+    cursor: pointer;
+    border-radius: 0px;
+    border: none;
+    background: var(--darkblue);
+    color: white;
+    padding: 4px 15px;
+    margin: auto;
+    width: 150px;
+    text-align: center;
+}
+
+.btn1:hover {
+    background: var(--lightblue);
+    color: var(--darkblue);
+}
+
+.btn1:active {
+    background: var(--darkred);
+    color: white;
+}
+
+.range_output {
+    background: var(--blue);
+    padding: 2px 5px;
+    border-radius: 5px;
+    color: white;
+}
+
+#generate_graph_dis {
+    display: none;
 }

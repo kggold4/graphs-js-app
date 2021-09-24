@@ -10,3 +10,19 @@ function check_range() {
     space = space_between_nodes.value
     range_output.innerHTML = space;
 }
+
+let open =  false;
+
+function show(id) {
+    let element = document.getElementById(id);
+    let mark = document.getElementById(id + "_mark");
+    if(element.style.display == 'none' || !open) {
+        element.style.display = 'block';
+        mark.innerHTML = '-';
+        open = true;
+    } else {
+        element.style.display = 'none';
+        mark.innerHTML = '+';
+        open = false;
+    }
+}
