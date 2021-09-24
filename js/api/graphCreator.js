@@ -1,8 +1,9 @@
 let node_counter = 0;
+let space = 500;
 
 // return a randomal postion of a node [x, y, z]
 function getPosition() {
-    return [Math.random() * 300, Math.random() * 300, 0];
+    return [Math.random() * space, Math.random() * space, 0];
 }
 
 // calculate distance function between two nodes
@@ -22,12 +23,10 @@ function createRandomGraph(n, e, start_counter_nodes = 1) {
     while(count_edges < e) {
         let id1 = randIntBetween(start_counter_nodes, n);
         let id2 = randIntBetween(start_counter_nodes, n);
-        console.log("(start) id1: ", id1, ", id2: ", id2);
 
         while(id1 === id2 || graph.hasEdge(id1, id2)) {
             id1 = randIntBetween(start_counter_nodes, n);
             id2 = randIntBetween(start_counter_nodes, n);
-            console.log("(same) id1: ", id1, ", id2: ", id2);
         }
 
         graph.addEdge(id1, id2);

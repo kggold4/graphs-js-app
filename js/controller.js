@@ -33,14 +33,18 @@ class Controller {
 
     drawEdges() {
         for(const node_id of this.graph.getNodesList()) {
-            console.log("node_id is: ", node_id);
             for(const child of this.graph.getChilds(node_id)) {
                 this.border.drawEdge(this.graph.getNode(node_id),
                                         this.graph.getNode(child),
                                         this.graph.getEdgeDistance(parseInt(node_id), parseInt(child)));
-            }
-            
+            } 
         }
+    }
+
+    clear() {
+        clear_draws();
+        this.graph = new Graph();
+        this.graphAlgo = new GraphAlgo();
     }
 
     /**

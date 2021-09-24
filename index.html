@@ -44,59 +44,32 @@
     <script>
 
         let controller = new Controller();
-        controller.createGraph(100, 100);
+        controller.createGraph(10, 20);
         controller.graph.print();
         controller.refresh_graph();
-
-        // controller.addNode(0, null, 0, "1th");
-        // controller.addNode(1, null, 0, "2th");
-        // controller.addNode(2, null, 0, "3th");
-        // controller.addNode(3, null, 0, "4th");
-        // controller.addNode(4, null, 0, "5th");
-        // controller.addNode(5, null, 0, "6th");
-        // controller.addNode(6, null, 0, "7th");
-        // controller.addNode(7, null, 0, "8th");
-        // controller.addNode(8, null, 0, "9th");
-
-        // console.log("nodes list: ", controller.getNodesList());
-
-        // console.log("has node");
-        // console.log(controller.hasNode(0));
-        // console.log(controller.hasNode(1));
-        // console.log(controller.hasNode(2));
-
-        // controller.addEdge(0,1);
-        // controller.addEdge(0,2);
-        // controller.addEdge(0,3);
-        // controller.addEdge(0,4);
-        // controller.addEdge(0,5);
-        // controller.addEdge(5,6);
-        // controller.addEdge(6,7);
-        // controller.addEdge(6,8);
-        // controller.addEdge(2,6);
-        // // controller.addEdge(8,0);
-
-        // console.log("has edge");
-
-        // // console.log(controller.removeNode(0));
-        // console.log(controller.hasEdge(0,1));
-        // console.log(controller.hasEdge(0,3));
-        // console.log(controller.hasEdge(4,0));
-        // console.log(controller.hasEdge(6,8));
-
-        // controller.refresh_graph();
 
         console.log(controller.isConnected());
         console.log("shortest path from 0 to 8 : ", controller.shortestPath(0,8));
         console.log("shortest path from 0 to 8 : ", controller.shortestPathDist(0,8));
         console.log("diameter distance : ", controller.diameterDistance());
 
-        // controller.graph.print();
-
-        // console.log("getChilds(6): ", controller.graph.getChilds(6));
-        // console.log("getParents(6): ", controller.graph.getParents(6));
-
     </script>
+
+    <footer class="footer" id="footer">
+        space between nodes:
+        <input type="range" value="500" step="10" name="space_between_nodes" id="space_between_nodes" min="100" max="1000" onchange="check_range();">
+        <span class="range_output" id="range_output"></span>
+
+        number of nodes:
+        <input type="number" value="10" min="0" name="number_of_nodes_input" id="number_of_nodes_input">
+
+        number of edges:
+        <input type="number" value="10" min="0" name="number_of_edges_input" id="number_of_edges_input">
+
+        <input type="button" value="Generate" onclick="controller.clear();
+                                                       controller.createGraph(number_of_nodes_input.value, number_of_edges_input.value);
+                                                       controller.refresh_graph()">
+    </footer>
     
 </body>
 </html>
