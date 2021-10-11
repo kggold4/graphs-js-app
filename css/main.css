@@ -6,10 +6,12 @@
     --black: #333;
     --darkgrey: #505050;
     --grey: #d6d6d6;
+    --whiteopacity: hsla(0, 0%, 100%, 0.63);
 
     --blue: #2d5277;
     --lightblue: #e3effa;
     --darkblue: #1b3046;
+    --blueopacity: hsla(210, 45%, 32%, 0.849);
 
     --red: #db2b2b;
     --darkred: #821515;
@@ -28,7 +30,6 @@
 
 html, body {
     text-align: center;
-    margin: 50px auto;
     width: 100%;
 }
 
@@ -44,22 +45,26 @@ input {
 }
 
 section {
-    border-top: 1px solid var(--black);
+    /* border-top: 1px solid var(--black); */
     padding: 20px 10%;
     text-align: left;
 }
 
 section > h3 {
-    margin: 20px 0;
+    margin: 40px 0;
 }
 
 footer {
-    border-top: 1px solid var(--black);
-    padding-top: 20px;
+    /* border-top: 1px solid var(--black); */
+    padding: 20px 0;
 }
 
 .block {
     display: block;
+}
+
+.none {
+    display: none;
 }
 
 .inline {
@@ -82,10 +87,19 @@ footer {
     background-color: #555;
 }
 
+.control_panel {
+    background: var(--lightblue);
+}
+
 .content {
     padding: 0 18px;
     display: none;
     overflow: hidden;
+}
+
+.inner_content {
+    padding: 50px;
+    background: var(--whiteopacity);
 }
 
 .buttons {
@@ -121,7 +135,7 @@ footer {
 }
 
 .bold-300 {
-    font-width: 300;
+    font-weight: 300;
 }
 
 .italic {
@@ -167,4 +181,18 @@ footer {
 
 #generate_graph_dis {
     display: none;
+}
+
+.generate_graph_dis {
+    display: none;
+    position: fixed;
+    margin: auto;
+    padding: 30% 0;
+    z-index: 50;
+    background: var(--blueopacity);
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    text-align: center;
 }

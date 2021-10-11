@@ -42,54 +42,75 @@
             <!-- main -->
             <main class="main" id="main"></main>
 
-            <section class="generate_graph_sec" id="generate_graph_sec">
-                <h3 class="italic pointer" onclick="show('generate_graph_dis');">Generate Graph<span class="normal big" id="generate_graph_dis_mark">+</span></h3>
-                <div class="content" id="generate_graph_dis">
-                    space between nodes:
-                    <input type="range" value="500" step="10" name="space_between_nodes" id="space_between_nodes"
-                           min="100" max="1000" onchange="check_range();">
-                    <span class="range_output bold italic small" id="range_output">500</span>
-                    number of nodes:
-                    <input class="width-50" type="number" value="10" min="0" name="number_of_nodes_input"
-                           id="number_of_nodes_input">
-                    number of edges:
-                    <input class="width-50" type="number" value="10" min="0" name="number_of_edges_input"
-                           id="number_of_edges_input">
-                    <input class="italic bold-300 btn1" type="button" value="generate"
-                           onclick="controller.clear();
-                           controller.createGraph(number_of_nodes_input.value, number_of_edges_input.value);
-                           controller.refresh_graph()">
-                </div>
-            </section>
+            <div class="control_panel">
 
-            <section class="control_sec" id="control_sec">
-                <h3 class="italic pointer" onclick="show('control_dis');">Graph Control<span class="normal big" id="control_dis_mark">+</span></h3>
-                <div class="content" id="control_dis">
-                    <div class="buttons">
-                        <input class="italic bold-300 btn1" type="button" value="add node" id="add_node_btn">
-                        <input class="italic bold-300 btn1" type="button" value="remove node" id="remove_node_btn">
-                        <input class="italic bold-300 btn1" type="button" value="add edge" id="add_edge_btn">
-                        <input class="italic bold-300 btn1" type="button" value="remove edge" id="remove_edge_btn">
+                <section class="generate_graph_sec" id="generate_graph_sec">
+                    <span class="normal big none" id="generate_graph_dis_mark">+</span>
+                    <div class="content generate_graph_dis" id="generate_graph_dis">
+                        <div class="inner_content">
+                            space between nodes:
+                            <input type="range" value="500" step="10" name="space_between_nodes" id="space_between_nodes"
+                                min="100" max="1000" onchange="check_range();">
+                            <span class="range_output bold italic small" id="range_output">500</span>
+                            number of nodes:
+                            <input class="width-50" type="number" value="10" min="0" name="number_of_nodes_input"
+                                id="number_of_nodes_input">
+                            number of edges:
+                            <input class="width-50" type="number" value="10" min="0" name="number_of_edges_input"
+                                id="number_of_edges_input">
+                            <input class="italic bold-300 btn1" type="button" value="generate"
+                                onclick="controller.clear();
+                                controller.createGraph(number_of_nodes_input.value, number_of_edges_input.value);
+                                controller.refresh_graph();
+                                show('generate_graph_dis');">
+                            <input type="button" value="X" class="pointer" onclick="show('generate_graph_dis');">
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <section class="algorithms_sec" id="algorithms_sec">
-                <h3 class="italic pointer" onclick="show('algorithms_dis');">Algorithms<span class="normal big" id="algorithms_dis_mark">+</span></h3>
-                <div class="content" id="algorithms_dis">
-                    <div class="buttons">
-                        <input class="italic bold-300 btn1" type="button" value="is connected" id="is_connected_btn">
-                        <input class="italic bold-300 btn1" type="button" value="shortest path" id="shortest_path_btn">
-                        <input class="italic bold-300 btn1" type="button" value="shortest distance" id="shortest_distance_btn">
-                        <input class="italic bold-300 btn1" type="button" value="diameter distance" id="diameter_distance_btn">
-                        <input class="italic bold-300 btn1" type="button" value="diameter path" id="diameter_path_btn">
+                <section class="control_sec" id="control_sec">
+                    <h3 class="italic pointer" onclick="show('control_dis');">Graph Control<span class="normal big" id="control_dis_mark">+</span></h3>
+                    <div class="content" id="control_dis">
+                        <div class="buttons">
+                            <input class="italic bold-300 btn1" type="button" value="Generate Graph" onclick="show('generate_graph_dis');">
+                            <input class="italic bold-300 btn1" type="button" value="add node" id="add_node_btn">
+                            <input class="italic bold-300 btn1" type="button" value="remove node" id="remove_node_btn">
+                            <input class="italic bold-300 btn1" type="button" value="add edge" id="add_edge_btn">
+                            <input class="italic bold-300 btn1" type="button" value="remove edge" id="remove_edge_btn">
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <footer class="footer" id="footer">
-                developed by <a href="https://www.github.com/kggold4/">Kfir Goldfarb</a>
-            </footer>
+                <section class="algorithms_sec" id="algorithms_sec">
+                    <h3 class="italic pointer" onclick="show('algorithms_dis');">Algorithms<span class="normal big" id="algorithms_dis_mark">+</span></h3>
+                    <div class="content" id="algorithms_dis">
+                        <div class="buttons">
+                            <input class="italic bold-300 btn1" type="button" value="is connected" id="is_connected_btn">
+                            <input class="italic bold-300 btn1" type="button" value="shortest path" id="shortest_path_btn">
+                            <input class="italic bold-300 btn1" type="button" value="shortest distance" id="shortest_distance_btn">
+                            <input class="italic bold-300 btn1" type="button" value="diameter distance" id="diameter_distance_btn">
+                            <input class="italic bold-300 btn1" type="button" value="diameter path" id="diameter_path_btn">
+                        </div>
+                    </div>
+                </section>
+
+                <footer class="footer" id="footer">
+                    developed by <a href="https://www.github.com/kggold4/">Kfir Goldfarb</a>
+                </footer>
+
+        </div>
+
+            <script>
+                let controller = new Controller();
+                controller.createGraph(10, 20);
+                controller.graph.print();
+                controller.refresh_graph();
+
+                console.log(controller.isConnected());
+                console.log("shortest path from 0 to 8 : ", controller.shortestPath(0, 8));
+                console.log("shortest path from 0 to 8 : ", controller.shortestPathDist(0, 8));
+                console.log("diameter distance : ", controller.diameterDistance());
+            </script>
 
     </body>
 </html>
