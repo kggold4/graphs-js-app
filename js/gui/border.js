@@ -60,6 +60,41 @@ function hideDist(id, childs, parents) {
     }
 }
 
+function change_pos(id) {
+    console.log("(change_pos) id is: ", id);
+    var elem = document.getElementById(id);
+  
+    var mousePosition;
+    var offset = [0,0];
+    var isDown = false;
+    
+    elem.addEventListener('mousedown', function(e) {
+        isDown = true;
+        offset = [
+            elem.offsetLeft - e.clientX,
+            elem.offsetTop - e.clientY
+        ];
+    }, true);
+  
+    document.addEventListener('mouseup', function() {
+        isDown = false;
+    }, true);
+  
+    document.addEventListener('mousemove', function(event) {
+        event.preventDefault();
+        if (isDown) {
+            mousePosition = {
+  
+                x : event.clientX,
+                y : event.clientY
+  
+            };
+            elem.style.left = (mousePosition.x + offset[0]) + 'px';
+            elem.style.top  = (mousePosition.y + offset[1]) + 'px';
+        }
+    }, true);
+}
+  
 class Border {
     constructor() {
         
@@ -72,9 +107,11 @@ class Border {
 
     drawNode(id, position, info, tag, childs, parents) {
         let content = '';
+        let node_id = "'" + String("node" + id) + "'";
         content += '<span\
             id="' + String("node" + id) + '"\
             class="node"\
+            onmouseover="change_pos(' + node_id + ');"\
             onmouseover="showPos(' + id + ');showDist(' + id + ',[' + childs + '],[' + parents + ']);"\
             onmouseout="hidePos(' + id +');hideDist(' + id + ',[' + childs + '],[' + parents + ']);"\
             >';
