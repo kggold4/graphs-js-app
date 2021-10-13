@@ -61,8 +61,10 @@ function hideDist(id, childs, parents) {
 }
 
 function change_pos(id) {
+
+    node_id = String("node" + id);
     console.log("(change_pos) id is: ", id);
-    var elem = document.getElementById(id);
+    var elem = document.getElementById(node_id);
   
     var mousePosition;
     var offset = [0,0];
@@ -91,13 +93,32 @@ function change_pos(id) {
             };
             elem.style.left = (mousePosition.x + offset[0]) + 'px';
             elem.style.top  = (mousePosition.y + offset[1]) + 'px';
+
+
+            
+            // let childs = controller.getChilds(id);
+            // // console.log("childs of ", id, " are: ", childs);
+            // for(const child of childs) {
+            //     controller.drawEdge(id, child);
+            // }
+            
+
+
+            // for(const node_id of this.graph.getNodesList()) {
+            //     for(const child of this.graph.getChilds(node_id)) {
+            //         this.border.drawEdge(this.graph.getNode(node_id),
+            //                                 this.graph.getNode(child),
+            //                                 this.graph.getEdgeDistance(parseInt(node_id), parseInt(child)));
+            //     } 
+            // }
+            
         }
     }, true);
 }
-  
+
 class Border {
     constructor() {
-        
+
     }
 
     addToMain(content) {
@@ -107,11 +128,10 @@ class Border {
 
     drawNode(id, position, info, tag, childs, parents) {
         let content = '';
-        let node_id = "'" + String("node" + id) + "'";
         content += '<span\
             id="' + String("node" + id) + '"\
             class="node"\
-            onmouseover="change_pos(' + node_id + ');"\
+            onmouseover="change_pos(' + id + ');"\
             onmouseover="showPos(' + id + ');showDist(' + id + ',[' + childs + '],[' + parents + ']);"\
             onmouseout="hidePos(' + id +');hideDist(' + id + ',[' + childs + '],[' + parents + ']);"\
             >';

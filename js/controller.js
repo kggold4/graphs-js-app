@@ -34,11 +34,15 @@ class Controller {
     drawEdges() {
         for(const node_id of this.graph.getNodesList()) {
             for(const child of this.graph.getChilds(node_id)) {
-                this.border.drawEdge(this.graph.getNode(node_id),
-                                        this.graph.getNode(child),
-                                        this.graph.getEdgeDistance(parseInt(node_id), parseInt(child)));
+                this.drawEdge(node_id, child);
             } 
         }
+    }
+
+    drawEdge(node_id, child_id) {
+        this.border.drawEdge(this.graph.getNode(node_id),
+                                this.graph.getNode(child_id),
+                                this.graph.getEdgeDistance(parseInt(node_id), parseInt(child_id)));
     }
 
     clear() {
@@ -91,6 +95,9 @@ class Controller {
 
     // remove connection between two nodes in the graph (id1 and id2 are id number of nodes in the graph)
     removeEdge(id1, id2) { this.savePrev(); this.graph.removeEdge(id1, id2); }
+
+    // return the child of a specific node
+    getChilds(id) { return this.graph.getChilds(id) }
 
     // return number of nodes in the graph
     nodeSize() { return this.graph.nodeSize(); }
